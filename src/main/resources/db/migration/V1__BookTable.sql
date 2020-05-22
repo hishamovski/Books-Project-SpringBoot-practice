@@ -1,0 +1,6 @@
+CREATE TABLE book (
+    id UUID NOT NULL PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    isbn VARCHAR(100) NOT NULL,
+    owner VARCHAR(100) NOT NULL
+)
