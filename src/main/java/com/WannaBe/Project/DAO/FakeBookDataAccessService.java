@@ -18,7 +18,7 @@ public class FakeBookDataAccessService implements BookDao{
         id = UUID.randomUUID();
         book.setId(id);
         DB.add(book);
-        return 1;
+        return 0;
     }
 
     @Override

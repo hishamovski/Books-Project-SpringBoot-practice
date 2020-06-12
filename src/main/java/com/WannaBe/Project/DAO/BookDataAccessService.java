@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,7 +21,14 @@ public class BookDataAccessService implements BookDao{
 
     @Override
     public int insertBook(UUID id, Book book) {
-        return 0;
+        final String sql = "INSERT INTO book(id,title,isbn,owner) VALUES (?,?,?,?)";
+
+        return jdbcTemplate.update(sql,new Object []{
+                        id,
+                        book.getTitle(),
+                        book.getIsbn(),
+                        book.getOwner()
+                });
     }
 
     @Override
@@ -40,7 +46,8 @@ public class BookDataAccessService implements BookDao{
 
     @Override
     public int deleteBook(UUID id) {
-        return 0;
+        String deleteQuery = "DELETE FROM book WHERE id = ?";
+        return jdbcTemplate.update(deleteQuery, new Object []{id});
     }
 
     @Override
